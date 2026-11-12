@@ -1,0 +1,641 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Techfest | IIT Bombay</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: #f3f0e8;
+    color: #171914;
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+}
+
+:root {
+    --orange: #ef512f;
+    --black: #171914;
+    --paper: #f3f0e8;
+    --muted: #66685f;
+    --green: #c8d7a5;
+}
+
+.container {
+    width: 90%;
+    max-width: 1160px;
+    margin: auto;
+}
+
+/* NAVIGATION */
+
+header {
+    border-bottom: 1px solid #d4d0c5;
+}
+
+nav {
+    min-height: 75px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 21px;
+    font-weight: 900;
+    line-height: 1.1;
+}
+
+.logo small {
+    display: block;
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: var(--muted);
+}
+
+.nav-links {
+    display: flex;
+    gap: 28px;
+}
+
+.nav-links a {
+    color: var(--black);
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.nav-links a:hover {
+    color: var(--orange);
+}
+
+/* HERO */
+
+.hero {
+    padding: 75px 0;
+    border-bottom: 1px solid #d4d0c5;
+}
+
+.topline {
+    display: flex;
+    justify-content: space-between;
+    color: var(--muted);
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    margin-bottom: 35px;
+}
+
+.hero-grid {
+    display: grid;
+    grid-template-columns: 1.15fr .85fr;
+    gap: 45px;
+    align-items: center;
+}
+
+h1 {
+    font-size: clamp(55px, 8vw, 105px);
+    line-height: .9;
+    letter-spacing: -6px;
+    font-weight: 900;
+}
+
+h1 span {
+    color: var(--orange);
+}
+
+.intro {
+    max-width: 450px;
+    margin-top: 25px;
+    color: var(--muted);
+    font-size: 15px;
+}
+
+.button {
+    display: inline-block;
+    margin-top: 25px;
+    padding: 13px 20px;
+    background: var(--orange);
+    color: white;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.button:hover {
+    background: #c93c20;
+}
+
+.text-link {
+    margin-left: 18px;
+    color: var(--black);
+    font-size: 13px;
+    font-weight: bold;
+}
+
+/* CYBORG ARTWORK */
+
+.poster {
+    height: 380px;
+    background: var(--green);
+    border: 1px solid var(--black);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.poster::before {
+    content: "TF";
+    position: absolute;
+    bottom: -90px;
+    left: -15px;
+    font-size: 300px;
+    font-weight: 900;
+    color: rgba(0,0,0,.07);
+}
+
+.circle {
+    position: absolute;
+    width: 250px;
+    height: 250px;
+    border: 1px solid var(--black);
+    border-radius: 50%;
+    transform: scaleX(.65) rotate(25deg);
+}
+
+.circle.second {
+    width: 290px;
+    height: 290px;
+    transform: scaleX(.65) rotate(-30deg);
+}
+
+.robot {
+    width: 115px;
+    height: 145px;
+    background: var(--orange);
+    border: 1px solid var(--black);
+    border-radius: 48% 48% 40% 40%;
+    position: relative;
+    z-index: 2;
+    transform: rotate(8deg);
+}
+
+.robot::before {
+    content: "";
+    position: absolute;
+    top: 48px;
+    left: 24px;
+    width: 65px;
+    height: 12px;
+    background: var(--black);
+}
+
+.robot::after {
+    content: "";
+    position: absolute;
+    bottom: 30px;
+    left: 42px;
+    width: 30px;
+    height: 4px;
+    background: var(--black);
+}
+
+.poster-label {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    font-size: 10px;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+.poster-bottom {
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+    font-size: 10px;
+    font-weight: bold;
+    text-align: right;
+}
+
+/* QUICK INFORMATION */
+
+.quick-info {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    border-bottom: 1px solid #d4d0c5;
+    padding: 25px 0;
+}
+
+.info {
+    padding: 5px 20px;
+    border-right: 1px solid #d4d0c5;
+}
+
+.info:first-child {
+    padding-left: 0;
+}
+
+.info:last-child {
+    border: none;
+}
+
+.info strong {
+    display: block;
+    font-size: 14px;
+}
+
+.info p {
+    font-size: 12px;
+    color: var(--muted);
+}
+
+/* CONTENT SECTIONS */
+
+section.content {
+    padding: 75px 0;
+}
+
+.section-heading {
+    display: grid;
+    grid-template-columns: .7fr 1.3fr;
+    gap: 30px;
+    margin-bottom: 35px;
+}
+
+.label {
+    color: var(--orange);
+    font-size: 11px;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+h2 {
+    font-size: clamp(32px, 5vw, 55px);
+    line-height: 1;
+    letter-spacing: -2px;
+    margin-bottom: 15px;
+}
+
+.description {
+    max-width: 600px;
+    color: var(--muted);
+    font-size: 14px;
+}
+
+.features {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    border-top: 1px solid var(--black);
+    border-bottom: 1px solid var(--black);
+}
+
+.feature {
+    padding: 25px 22px 30px 0;
+    border-right: 1px solid #d4d0c5;
+}
+
+.feature + .feature {
+    padding-left: 22px;
+}
+
+.feature:last-child {
+    border: none;
+}
+
+.feature span {
+    color: var(--orange);
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.feature h3 {
+    margin: 35px 0 10px;
+    font-size: 21px;
+}
+
+.feature p {
+    font-size: 13px;
+    color: var(--muted);
+}
+
+/* FINAL SECTION */
+
+.join {
+    background: var(--black);
+    color: var(--paper);
+    padding: 65px 0;
+}
+
+.join-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 30px;
+}
+
+.join p {
+    color: #b7b8ae;
+    font-size: 14px;
+    max-width: 500px;
+    margin-top: 12px;
+}
+
+footer {
+    padding: 22px 0;
+    color: var(--muted);
+    font-size: 11px;
+}
+
+/* MOBILE RESPONSIVENESS */
+
+@media(max-width: 760px) {
+    .hero-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .section-heading {
+        grid-template-columns: 1fr;
+    }
+
+    .poster {
+        height: 300px;
+    }
+}
+
+@media(max-width: 560px) {
+    .nav-links {
+        gap: 12px;
+    }
+
+    .nav-links a {
+        font-size: 11px;
+    }
+
+    .hero {
+        padding: 45px 0;
+    }
+
+    h1 {
+        letter-spacing: -4px;
+    }
+
+    .quick-info {
+        grid-template-columns: 1fr;
+    }
+
+    .info {
+        padding: 12px 0;
+        border-right: none;
+        border-bottom: 1px solid #d4d0c5;
+    }
+
+    .features {
+        grid-template-columns: 1fr;
+    }
+
+    .feature,
+    .feature + .feature {
+        padding: 20px 0;
+        border-right: none;
+        border-bottom: 1px solid #d4d0c5;
+    }
+
+    .feature h3 {
+        margin: 12px 0 8px;
+    }
+
+    .join-inner {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="container">
+        <nav>
+            <div class="logo">
+                TECHFEST
+                <small>IIT BOMBAY</small>
+            </div>
+
+            <div class="nav-links">
+                <a href="#about">About</a>
+                <a href="#discover">Explore</a>
+                <a href="#join">Get Involved</a>
+            </div>
+        </nav>
+    </div>
+</header>
+
+<main>
+
+<section class="hero">
+    <div class="container">
+
+        <div class="topline">
+            <span>A STUDENT-MADE INTRODUCTION</span>
+            <span>TECHNOLOGY · IDEAS · PEOPLE</span>
+        </div>
+
+        <div class="hero-grid">
+
+            <div>
+                <h1>
+                    IDEAS<br>
+                    MEET <span>THE</span><br>
+                    FUTURE.
+                </h1>
+
+                <p class="intro">
+                    Technology is more than machines and code.
+                    It starts with a question, grows through
+                    experimentation and gets better when people
+                    build things together.
+
+                    That is the spirit of Techfest, IIT Bombay.
+                </p>
+
+                <a href="#discover" class="button">Take a look</a>
+
+                <a href="#about" class="text-link">
+                    About Techfest ↓
+                </a>
+            </div>
+
+            <div class="poster">
+                <span class="poster-label">PEOPLE × TECHNOLOGY</span>
+
+                <div class="circle"></div>
+                <div class="circle second"></div>
+                <div class="robot"></div>
+
+                <span class="poster-bottom">
+                    CURIOSITY<br>
+                    IN MOTION / 01
+                </span>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<div class="container">
+    <div class="quick-info">
+
+        <div class="info">
+            <strong>Based at IIT Bombay</strong>
+            <p>A platform for student innovation</p>
+        </div>
+
+        <div class="info">
+            <strong>Made for the curious</strong>
+            <p>For learners and problem-solvers</p>
+        </div>
+
+        <div class="info">
+            <strong>Open to new ideas</strong>
+            <p>Explore, participate and connect</p>
+        </div>
+
+    </div>
+</div>
+
+<section class="content" id="about">
+    <div class="container">
+
+        <div class="section-heading">
+
+            <div class="label">01 / THE IDEA</div>
+
+            <div>
+                <h2>
+                    Not just watching<br>
+                    the future. Making it.
+                </h2>
+
+                <p class="description">
+                    Techfest is the annual science and technology
+                    festival of IIT Bombay. It brings together
+                    students and technology enthusiasts through
+                    competitions, exhibitions, learning opportunities
+                    and conversations around new ideas.
+
+                    There is always something worth being curious about.
+                </p>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<section class="content" id="discover">
+    <div class="container">
+
+        <div class="section-heading">
+
+            <div class="label">02 / EXPLORE</div>
+
+            <div>
+                <h2>
+                    Find your way<br>
+                    into technology.
+                </h2>
+
+                <p class="description">
+                    Whether you like building, competing or simply
+                    seeing how things work, there are different ways
+                    to get involved.
+                </p>
+            </div>
+
+        </div>
+
+        <div class="features">
+
+            <div class="feature">
+                <span>01 — COMPETE</span>
+                <h3>Challenges</h3>
+                <p>
+                    Put your knowledge to work, solve practical
+                    problems and learn by trying.
+                </p>
+            </div>
+
+            <div class="feature">
+                <span>02 — DISCOVER</span>
+                <h3>Exhibitions</h3>
+                <p>
+                    Explore projects, demonstrations and ideas
+                    from the world of technology.
+                </p>
+            </div>
+
+            <div class="feature">
+                <span>03 — CONNECT</span>
+                <h3>People & Ideas</h3>
+                <p>
+                    Meet students and enthusiasts who enjoy
+                    asking questions and making things happen.
+                </p>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<section class="join" id="join">
+    <div class="container join-inner">
+
+        <div>
+            <div class="label">03 / YOUR TURN</div>
+
+            <h2>
+                Stay curious.<br>
+                See what you can make.
+            </h2>
+
+            <p>
+                Want to know about the festival, its events and
+                participation details? Visit the official Techfest
+                website for the latest updates.
+                
+            </p>
+        </div>
+
+        <a href="https://ca.techfest.org/"
+           target="_blank"
+           rel="noopener"
+           class="button">
+            Visit Techfest ↗
+        </a>
+
+    </div>
+</section>
+
+</main>
+
+<footer>
+    <div class="container">
+        Student project · Techfest, IIT Bombay
+    </div>
+</footer>
+
+</body>
+</html>
