@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="CYBERION — a glimpse into the human-machine future." />
+  <title>CYBERION | Human x Machine</title>
+  <style>
+    /* ---------- Basic setup ---------- */
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      color: #f4f7fb;
+      background: #080b12;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    :root {
+      --cyan: #42e8f5;
+      --purple: #9a70ff;
+      --muted: #9ba8b8;
+      --panel: rgba(18, 25, 39, .78);
+    }
+    a { color: inherit; text-decoration: none; }
+    .container { width: min(1100px, 90%); margin: auto; }
+
+    /* ---------- Navigation ---------- */
+    header {
+      position: absolute;
+      top: 0; left: 0; width: 100%;
+      z-index: 10;
+      border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+    nav {
+      min-height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+    .logo { font-size: 1.25rem; font-weight: 800; letter-spacing: 3px; }
+    .logo span { color: var(--cyan); }
+    .nav-links { display: flex; gap: 28px; list-style: none; color: #c5cfdb; font-size: .9rem; }
+    .nav-links a:hover { color: var(--cyan); }
+    .menu-btn {
+      display: none; border: 1px solid #334052; background: transparent;
+      color: white; padding: 8px 11px; border-radius: 7px; cursor: pointer;
+    }
+
+    /* ---------- Hero section ---------- */
+    .hero {
+      min-height: 720px;
+      padding: 150px 0 90px;
+      display: flex; align-items: center;
+      position: relative; isolation: isolate;
+      background:
+        radial-gradient(circle at 78% 45%, rgba(91, 60, 170, .25), transparent 32%),
+        radial-gradient(circle at 18% 70%, rgba(30, 190, 205, .12), transparent 28%),
+        #080b12;
+    }
+    .hero::before {
+      content: ""; position: absolute; inset: 0; z-index: -1; opacity: .18;
+      background-image: linear-gradient(rgba(91,220,235,.12) 1px, transparent 1px),
+                        linear-gradient(90deg, rgba(91,220,235,.12) 1px, transparent 1px);
+      background-size: 48px 48px;
+      mask-image: linear-gradient(to bottom, black, transparent 90%);
+    }
+    .hero-grid { display: grid; grid-template-columns: 1.05fr .95fr; align-items: center; gap: 45px; }
+    .eyebrow { color: var(--cyan); letter-spacing: 3px; font-size: .76rem; font-weight: bold; }
+    h1 { font-size: clamp(2.7rem, 6vw, 5.3rem); line-height: 1.02; margin: 18px 0; letter-spacing: -2px; }
+    h1 span { color: var(--cyan); text-shadow: 0 0 25px rgba(66,232,245,.25); }
+    .hero-copy { max-width: 520px; color: var(--muted); font-size: 1.05rem; margin-bottom: 30px; }
+    .buttons { display: flex; flex-wrap: wrap; gap: 14px; }
+    .btn {
+      display: inline-block; padding: 12px 21px; border-radius: 5px;
+      font-weight: bold; font-size: .9rem; transition: .2s ease;
+    }
+    .btn-primary { color: #071015; background: var(--cyan); box-shadow: 0 0 22px rgba(66,232,245,.2); }
+    .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 0 30px rgba(66,232,245,.4); }
+    .btn-outline { border: 1px solid #526174; color: #e9f2fa; }
+    .btn-outline:hover { border-color: var(--cyan); color: var(--cyan); }
+
+    /* CSS-built cyborg illustration — no image files required */
+    .cyborg-stage { min-height: 410px; display: grid; place-items: center; position: relative; }
+    .orbit { position: absolute; width: 340px; height: 340px; border: 1px solid rgba(66,232,245,.28); border-radius: 50%; transform: rotate(-25deg) scaleY(.42); }
+    .orbit::before, .orbit::after { content: ""; position: absolute; inset: 18px; border: 1px dashed rgba(154,112,255,.4); border-radius: 50%; }
+    .orbit::after { inset: -35px; border-color: rgba(66,232,245,.12); }
+    .cyborg {
+      width: 230px; height: 290px; position: relative;
+      filter: drop-shadow(0 0 25px rgba(66,232,245,.18));
+    }
+    .head {
+      position: absolute; top: 8px; left: 48px; width: 135px; height: 155px;
+      background: linear-gradient(135deg, #d5e5ed 0%, #697d91 42%, #1b2938 43%, #91a9b9 100%);
+      border: 2px solid #a9d9e2; border-radius: 48% 48% 42% 42%;
+      clip-path: polygon(18% 0, 82% 0, 100% 22%, 91% 76%, 68% 100%, 32% 100%, 9% 76%, 0 22%);
+    }
+    .head::before {
+      content: ""; position: absolute; left: 12px; top: 48px; width: 111px; height: 35px;
+      background: #101a28; border: 1px solid #4b7484; border-radius: 8px;
+    }
+    .eye { position: absolute; top: 61px; width: 30px; height: 5px; background: var(--cyan); box-shadow: 0 0 14px var(--cyan); z-index: 2; }
+    .eye.left { left: 65px; } .eye.right { right: 65px; }
+    .jaw {
+      position: absolute; left: 73px; top: 115px; width: 85px; height: 55px;
+      border: 2px solid #9db8c8; border-top: 0; border-radius: 0 0 22px 22px;
+      background: linear-gradient(120deg, #25394b, #111b28);
+    }
+    .neck { position: absolute; top: 155px; left: 94px; width: 42px; height: 42px; background: #526a7d; border: 2px solid #9db8c8; }
+    .shoulders {
+      position: absolute; bottom: 0; left: 5px; width: 220px; height: 125px;
+      background: linear-gradient(135deg, #8ea5b4, #26394b 45%, #111b28 46%, #60798a);
+      border: 2px solid #829eae; border-radius: 50% 50% 14px 14px;
+      clip-path: polygon(28% 0, 72% 0, 100% 35%, 92% 100%, 8% 100%, 0 35%);
+    }
+    .chest-light { position: absolute; bottom: 38px; left: 101px; width: 28px; height: 28px; border: 3px solid var(--cyan); transform: rotate(45deg); box-shadow: 0 0 18px var(--cyan); }
+    .scan-line { position: absolute; top: 0; width: 100%; height: 2px; background: var(--cyan); opacity: .6; box-shadow: 0 0 15px var(--cyan); animation: scan 4s linear infinite; }
+    @keyframes scan { 0% { top: 5%; opacity: 0; } 20% { opacity: .7; } 80% { opacity: .7; } 100% { top: 95%; opacity: 0; } }
+
+    /* ---------- Content sections ---------- */
+    section { padding: 85px 0; }
+    .section-heading { text-align: center; margin-bottom: 42px; }
+    .section-heading h2 { font-size: clamp(1.8rem, 4vw, 2.6rem); margin: 8px 0; }
+    .section-heading p { color: var(--muted); max-width: 600px; margin: auto; }
+    .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .card {
+      background: var(--panel); border: 1px solid rgba(255,255,255,.09);
+      padding: 27px; border-radius: 10px; transition: .25s ease;
+    }
+    .card:hover { transform: translateY(-6px); border-color: rgba(66,232,245,.55); }
+    .icon { font-size: 1.7rem; margin-bottom: 15px; }
+    .card h3 { margin-bottom: 9px; }
+    .card p { color: var(--muted); font-size: .94rem; }
+    .about { background: #0c111b; }
+    .about-box {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center;
+      background: linear-gradient(120deg, rgba(66,232,245,.07), rgba(154,112,255,.07));
+      border: 1px solid rgba(255,255,255,.08); border-radius: 12px; padding: 38px;
+    }
+    .about-box h2 { font-size: 2rem; margin: 8px 0 15px; }
+    .about-box p { color: var(--muted); }
+    .status-list { list-style: none; display: grid; gap: 13px; }
+    .status-list li { padding: 13px 15px; background: rgba(5,10,18,.55); border-left: 2px solid var(--cyan); color: #d9e4ee; }
+    .status-list span { color: var(--cyan); float: right; font-size: .8rem; }
+
+    /* ---------- Call to action and footer ---------- */
+    .cta { text-align: center; padding: 75px 20px; }
+    .cta h2 { font-size: clamp(1.8rem, 4vw, 2.7rem); margin-bottom: 12px; }
+    .cta p { color: var(--muted); margin-bottom: 24px; }
+    footer { border-top: 1px solid rgba(255,255,255,.08); padding: 25px 0; color: #8290a1; font-size: .85rem; }
+    .footer-inner { display: flex; justify-content: space-between; gap: 15px; flex-wrap: wrap; }
+
+    /* ---------- Mobile responsiveness ---------- */
+    @media (max-width: 760px) {
+      .menu-btn { display: block; }
+      .nav-links {
+        display: none; position: absolute; top: 76px; left: 0; width: 100%;
+        padding: 20px 5%; background: #0c111b; flex-direction: column; gap: 16px;
+        border-bottom: 1px solid rgba(255,255,255,.1);
+      }
+      .nav-links.show { display: flex; }
+      .hero { min-height: auto; padding: 125px 0 65px; }
+      .hero-grid { grid-template-columns: 1fr; text-align: center; gap: 20px; }
+      .hero-copy { margin-left: auto; margin-right: auto; }
+      .buttons { justify-content: center; }
+      .cyborg-stage { min-height: 350px; transform: scale(.9); }
+      .cards { grid-template-columns: 1fr; }
+      .about-box { grid-template-columns: 1fr; padding: 25px; }
+      section { padding: 65px 0; }
+    }
+    @media (max-width: 380px) {
+      .cyborg-stage { transform: scale(.76); margin: -25px 0; }
+      h1 { letter-spacing: -1px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="container">
+      <a class="logo" href="#home">CYBER<span>ION</span></a>
+      <button class="menu-btn" id="menuBtn" aria-label="Open navigation" aria-expanded="false">☰</button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#features">Features</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Explore</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="container hero-grid">
+        <div>
+          <p class="eyebrow">THE NEXT EVOLUTION BEGINS</p>
+          <h1>HUMAN<br />MEETS <span>MACHINE.</span></h1>
+          <p class="hero-copy">Step into a world where human creativity and advanced technology work as one. Discover the future of intelligent systems, cybernetic design, and limitless possibilities.</p>
+          <div class="buttons">
+            <a class="btn btn-primary" href="#features">Explore the Future</a>
+            <a class="btn btn-outline" href="#about">Discover More</a>
+          </div>
+        </div>
+        <div class="cyborg-stage" aria-label="Stylized futuristic cyborg illustration">
+          <div class="orbit"></div>
+          <div class="cyborg">
+            <div class="scan-line"></div>
+            <div class="head"></div>
+            <div class="eye left"></div><div class="eye right"></div>
+            <div class="jaw"></div><div class="neck"></div>
+            <div class="shoulders"></div><div class="chest-light"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="features">
+      <div class="container">
+        <div class="section-heading">
+          <p class="eyebrow">BUILT FOR TOMORROW</p>
+          <h2>Beyond the Ordinary</h2>
+          <p>A simple look at the technologies shaping a more connected and intelligent future.</p>
+        </div>
+        <div class="cards">
+          <article class="card">
+            <div class="icon">◈</div>
+            <h3>Artificial Intelligence</h3>
+            <p>Smarter systems that learn, adapt, and help people solve real-world challenges.</p>
+          </article>
+          <article class="card">
+            <div class="icon">⌁</div>
+            <h3>Cybernetic Design</h3>
+            <p>Exploring the connection between human abilities, machines, and modern interfaces.</p>
+          </article>
+          <article class="card">
+            <div class="icon">⬡</div>
+            <h3>Connected Future</h3>
+            <p>Secure and connected technologies designed to make everyday experiences better.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="about" id="about">
+      <div class="container">
+        <div class="about-box">
+          <div>
+            <p class="eyebrow">A NEW PERSPECTIVE</p>
+            <h2>Technology is a tool.<br />Imagination is the power.</h2>
+            <p>CYBERION is a concept landing page inspired by the cyborg aesthetic. It combines a dark interface, neon accents, and clean content sections to create a futuristic experience without making the design difficult to use.</p>
+          </div>
+          <ul class="status-list">
+            <li>Human-centred design <span>ACTIVE</span></li>
+            <li>Future-ready thinking <span>ONLINE</span></li>
+            <li>Creative technology <span>EVOLVING</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta" id="contact">
+      <div class="container">
+        <p class="eyebrow">YOUR FUTURE STARTS HERE</p>
+        <h2>Ready to explore what comes next?</h2>
+        <p>Curiosity is the first step towards innovation.</p>
+        <a class="btn btn-primary" href="mailto:hello@example.com">Get in Touch</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <p>© 2026 CYBERION. Concept landing page.</p>
+      <p>Designed with curiosity and code.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Small mobile navigation toggle
+    const menuBtn = document.getElementById("menuBtn");
+    const navLinks = document.getElementById("navLinks");
+
+    menuBtn.addEventListener("click", function () {
+      navLinks.classList.toggle("show");
+      const isOpen = navLinks.classList.contains("show");
+      menuBtn.setAttribute("aria-expanded", isOpen);
+      menuBtn.textContent = isOpen ? "✕" : "☰";
+    });
+
+    // Close the mobile menu after choosing a section
+    document.querySelectorAll(".nav-links a").forEach(function (link) {
+      link.addEventListener("click", function () {
+        navLinks.classList.remove("show");
+        menuBtn.setAttribute("aria-expanded", "false");
+        menuBtn.textContent = "☰";
+      });
+    });
+  </script>
+</body>
+</html>
