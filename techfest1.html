@@ -625,30 +625,26 @@ footer {
            class="button">
             Visit Techfest 
         </a>
+         <div>
+        <h2 style="font-size: 30px; margin-bottom: 15px; color: #ffffff;">
+        MY COLLEGE AMBASSADOR REFERRAL CODE
+        </h2>
 
-    </div>
-    
-<section class="referral">
-    <div class="referral-content">
-        <p class="referral-label">COLLEGE AMBASSADOR</p>
+    <div style="display: flex; align-items: center; gap: 15px;">
+        <strong id="myReferralCode" style="font-size: 15px;">
+            CA-090614001890
+        </strong>
 
-        <h2>Join Techfest with my referral.</h2>
-
-        <p class="referral-description">
-            Use my referral code while registering and be a part
-            of the Techfest experience.
-        </p>
-
-        <div class="referral-box">
-            <span id="referralCode">CA-090614001890</span>
-
-            <button onclick="copyReferralCode()" id="copyButton">
-                Copy Code
+            <button
+             onclick="navigator.clipboard.writeText('CA-090614001890').then(() => this.innerText='Copied!')"
+             style="padding: 9px 13px; background: #ef512f; color: white; border: none; cursor: pointer;">
+             Copy
             </button>
         </div>
 
-        <p id="copyMessage"></p>
     </div>
+    
+
 </section>
 
 </section>
